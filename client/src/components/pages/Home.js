@@ -25,7 +25,7 @@ function Home(props) {
 
                         <div className="row">
                             <div className="col-md-6 text-right">
-                                <button className="btn btn-outline-success" onClick={() => props.saveBook(item.id, item.volumeInfo.title, item.volumeInfo.authors, item.volumeInfo.description, item.volumeInfo.imageLinks.thumbnail, item.selfLink)}>Add to Saved List</button>
+                                <button className="btn btn-outline-success" onClick={() => props.saveBook(item.id, item.volumeInfo.title, item.volumeInfo.authors, item.volumeInfo.description, item.volumeInfo.imageLinks.thumbnail, item.volumeInfo.infoLink)}>Add to Saved List</button>
                             </div>
                             <div className="col-md-6 text-left">
                                 <a className="btn btn-outline-warning" href={item.volumeInfo.infoLink} target="_blank" rel="noopener noreferrer">View in Google</a>                            
