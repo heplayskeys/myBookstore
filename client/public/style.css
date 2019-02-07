@@ -1,5 +1,6 @@
 body {
     background: url("https://www.toptal.com/designers/subtlepatterns/patterns/greyzz.png");
+    font-family: "Yanone Kaffeesatz", sans-serif;
 }
 
 nav {
@@ -27,6 +28,7 @@ input {
 }
 
 .activePage a {
+    font-size: 1.5rem;
     font-weight: bold;
     color: darkred;
 }
@@ -36,12 +38,19 @@ input {
 }
 
 .inactive a {
+    font-size: 1.25rem;
     font-weight: lighter;
     color: #444444;
+    vertical-align: text-top;
 }
 
 .inactive a:hover {
     text-decoration: none;
     font-weight: normal;
     color: #000000;
+}
+
+.showResults {
+    color: darkred;
+    font-weight: bold;
 }

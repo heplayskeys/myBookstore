@@ -35,6 +35,10 @@ class App extends Component {
     });
   };
 
+  clearResults = () => {
+    this.setState({books: [], search: ""});
+  }
+
   saveBook = (id, title, authors, description, image, link) => {
     let book = {
       bookId: id,
@@ -60,7 +64,7 @@ class App extends Component {
         <div>
           <NavTabs currentPage={this.state.currentPage} handlePageChange={this.handlePageChange} />
           <br />
-          <Route exact path="/" render={(props) => <Home {...props} handlePageChange={this.handlePageChange} handleInput={this.handleInput} handleClick={this.handleClick} enterPressed={this.enterPressed} books={this.state.books} currentPage={this.state.currentPage} search={this.state.search} saveBook={this.saveBook} />} />
+          <Route exact path="/" render={(props) => <Home {...props} handlePageChange={this.handlePageChange} handleInput={this.handleInput} handleClick={this.handleClick} clearResults={this.clearResults} enterPressed={this.enterPressed} books={this.state.books} currentPage={this.state.currentPage} search={this.state.search} saveBook={this.saveBook} />} />
           <Route exact path="/saved" render={(props) => <Saved {...props} handlePageChange={this.handlePageChange} />} />
         </div>
       </Router>

@@ -43,34 +43,43 @@ function Home(props) {
     
     
     return (
-        <div style={{padding: "0 20px"}}>
-    
-            <div className="jumbotron text-center bg-light" style={{border: "1px solid #dee2e6", paddingBottom: "30px"}}>
-                <h1>(React) Google Book Search</h1>
+        <React.Fragment>
+            <div style={{padding: "0 20px"}}>
+        
+                <div className="jumbotron text-center bg-dark text-white" style={{border: "1px solid #dee2e6", paddingBottom: "30px"}}>
+                    <h1>(React) Google Book Search</h1>
+                    <hr />
+                    <br />
+                    <h5>
+                        Search for and save books of interest!
+                    </h5>
+                </div>
+        
+                <section className="bookSearch" style={{border: "1px solid #dee2e6", borderRadius: ".25rem", padding: "20px", overflow: "auto"}}>
+                    <h3>Book Search</h3><br />
+                    <label htmlFor="bookTitle">Book:</label><br />
+                    <input className={props.search ? "inputFocus" : null} type="text" placeholder="Enter Book Title" style={{width: "100%", padding: "0 5px"}} onChange={props.handleInput} onKeyPress={props.enterPressed} value={props.search}></input><br /><br />
+                    <div style={{float: "right"}}>
+                        <button className="btn btn-outline-dark" style={{marginRight: "10px"}} onClick={props.handleClick}>Search</button>
+                        <button className={results.length > 0 ? "btn btn-outline-danger" : "btn btn-outline-dark disabled"} onClick={props.clearResults}>Clear Results</button>
+                    </div>
+                </section>
+        
                 <br />
-                <hr />
-                <br />
-                <h5>
-                    Search for and save books of interest!
-                </h5>
+        
+                <section className="bg-light" style={{border: "1px solid #dee2e6", borderRadius: ".25rem", padding: "20px", overflow: "auto"}}>
+                    <h3 className={results.length > 0 ? "showResults" : null}>Results</h3><br />
+                    <ul style={{padding: "0"}}>
+                        {results}
+                    </ul>
+                </section>
             </div>
-    
-            <section className="bookSearch" style={{border: "1px solid #dee2e6", borderRadius: ".25rem", padding: "20px", overflow: "auto"}}>
-                <h3>Book Search</h3><br />
-                <label htmlFor="bookTitle">Book:</label><br />
-                <input className={props.search ? "inputFocus" : null} type="text" placeholder="Enter Book Title" style={{width: "100%", padding: "0 5px"}} onChange={props.handleInput} onKeyPress={props.enterPressed} value={props.search}></input><br /><br />
-                <button className="btn btn-outline-dark" style={{float: "right"}} onClick={props.handleClick}>Search</button>
-            </section>
-    
-            <br />
-    
-            <section className="bg-light" style={{border: "1px solid #dee2e6", borderRadius: ".25rem", padding: "20px", overflow: "auto"}}>
-                <h3>Results</h3><br />
-                <ul style={{padding: "0"}}>
-                    {results}
-                </ul>
-            </section>
-        </div>
+            <div>
+                <section style={{position: "fixed", bottom: "0", left: "0", border: "1px solid #999999", background: "#ffffff", borderStyle: "solid solid none solid", borderTopRightRadius: ".25rem", padding: "5px 10px 0 10px", fontWeight: "bold"}}>
+                    myBookStore &copy;
+                </section>
+            </div>
+        </React.Fragment>
     );
 }
 

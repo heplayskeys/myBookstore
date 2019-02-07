@@ -63,25 +63,31 @@ class Saved extends React.Component {
     }
   
     return (
-      <div style={{padding: "0 20px"}}>
-  
-        <div className="jumbotron text-center bg-light" style={{border: "1px solid #dee2e6", paddingBottom: "30px"}}>
-            <h1>(React) Google Book Search</h1>
-            <br />
-            <hr />
-            <br />
-            <h5>
-                View your saved books, below!
-            </h5>
+      <React.Fragment>
+        <div style={{padding: "0 20px"}}>
+    
+          <div className="jumbotron text-center bg-dark text-white" style={{border: "1px solid #dee2e6", paddingBottom: "30px"}}>
+              <h1>(React) Google Book Search</h1>
+              <hr />
+              <br />
+              <h5>
+                  View your saved books, below!
+              </h5>
+          </div>
+    
+          <section style={{border: "1px solid #dee2e6", borderRadius: ".25rem", padding: "20px", overflow: "auto", background: "#ffffff"}}>
+              <h3 className={savedList.length > 0 ? "showResults" : null}>Saved Books</h3><br />
+              <ul style={{padding: "0"}}>
+                  {savedList}
+              </ul>
+          </section>
         </div>
-  
-        <section style={{border: "1px solid #dee2e6", borderRadius: ".25rem", padding: "20px", overflow: "auto", background: "#ffffff"}}>
-            <h3>Saved Books</h3><br />
-            <ul style={{padding: "0"}}>
-                {savedList}
-            </ul>
-        </section>
-      </div>
+        <div>
+          <section style={{position: "fixed", bottom: "0", left: "0", border: "1px solid #999999", background: "#ffffff", borderStyle: "solid solid none solid", borderTopRightRadius: ".25rem", padding: "5px 10px 0 10px", fontWeight: "bold"}}>
+            myBookStore &copy;
+          </section>
+        </div>
+      </React.Fragment>
     );
   }
 }
