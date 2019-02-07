@@ -3,32 +3,73 @@ import React from "react";
 function Home(props) {
 
     let results = [];
+    let image;
+    let authors;
+    let description;
+    let saveBtn;
+    let infoLink;
 
     if (props.books.length > 0) {
         results = props.books.map(item => {
+
+            if (item.volumeInfo.imageLinks) {
+                image = <img className="img-thumbnail" src={item.volumeInfo.imageLinks.thumbnail} alt={item.volumeInfo.title} />;
+            }
+            else {
+                image = <img className="img-thumbnail" src="https://www.quercusbooks.co.uk/wp-content/uploads/2018/07/missingbook.png" alt={item.volumeInfo.title} />;
+            }
+
+            if (item.volumeInfo.authors) {
+                authors = <h6>Written by: {item.volumeInfo.authors.join(", ")}</h6>;
+            }
+            else {
+                authors = <h6>Written by: <em>Not Available</em></h6>;
+            }
+
+            if (item.volumeInfo.description) {
+                description = <p>{item.volumeInfo.description}</p>;
+            }
+            else {
+                description = <p><em>Description not available.</em></p>
+            }
+
+            if (item.id && item.volumeInfo.title && item.volumeInfo.authors && item.volumeInfo.description && item.volumeInfo.imageLinks && item.volumeInfo.infoLink) {
+                saveBtn = <button className="btn btn-outline-success" onClick={() => props.saveBook(item.id, item.volumeInfo.title, item.volumeInfo.authors, item.volumeInfo.description, item.volumeInfo.imageLinks.thumbnail, item.volumeInfo.infoLink)}>Add to Saved List</button>;
+            }
+            else {
+                saveBtn = <button className="btn btn-outline-success disabled">Save Unavailable</button>;
+            }
+
+            if (item.volumeInfo.infoLink) {
+                infoLink = <a className="btn btn-outline-warning" href={item.volumeInfo.infoLink} target="_blank" rel="noopener noreferrer">View in Google</a>;
+            }
+            else {
+                infoLink = <a className="btn btn-outline-warning">Unavailable in Google</a>;
+            }
+
             return (
                 <li key={item.id} type="none" style={{border: "2px solid #dee2e6", padding: "10px", marginBottom: "25px", backgroundColor: "#ffffff", boxShadow: "0 8px 6px -6px #000000"}}>
                     <div className="container">
                         <h4>{item.volumeInfo.title}</h4>
-                        <h6>Written by: {item.volumeInfo.authors.join(", ")}</h6>
+                        {authors}
                         <hr />
                         
                         <div className="row">
                             <div className="col-md-2">
-                                <img className="img-thumbnail" src={item.volumeInfo.imageLinks.thumbnail} alt={item.volumeInfo.title} />
+                                {image}
                             </div>
                             <div className="col-md-10">
-                                <p>{item.volumeInfo.description}</p>
+                                {description}
                             </div>
                         </div>
                         <hr />
 
                         <div className="row">
                             <div className="col-md-6 text-right">
-                                <button className="btn btn-outline-success" onClick={() => props.saveBook(item.id, item.volumeInfo.title, item.volumeInfo.authors, item.volumeInfo.description, item.volumeInfo.imageLinks.thumbnail, item.volumeInfo.infoLink)}>Add to Saved List</button>
+                                {saveBtn}
                             </div>
                             <div className="col-md-6 text-left">
-                                <a className="btn btn-outline-warning" href={item.volumeInfo.infoLink} target="_blank" rel="noopener noreferrer">View in Google</a>                            
+                                {infoLink}
                             </div>
                         </div>
 
